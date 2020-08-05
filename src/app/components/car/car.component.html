@@ -1,0 +1,51 @@
+<div class="container">
+  <br>
+  <h4>
+    <mark>Auto:</mark>{{name}}
+    <small>{{model}}</small>
+  </h4>
+  <div class="alert alert-success">
+    characteristic
+    <ul>
+      <li>Speed: <strong>{{speed}}</strong> km</li>
+      <li>Color Auto: <strong>{{colors.car}}</strong></li>
+      <li>Color Salon: <strong>{{colors.salon}}</strong></li>
+      <li>Color wheels:  <strong>{{colors.wheels}}</strong></li>
+    </ul>
+  </div>
+
+  <h5>Editing Object</h5>
+  <button class="btn btn-outline-warning" (click)="showEdit()">Editing</button>
+  <div> <br> </div>
+  <form *ngIf="isEdit">
+    <div class="form-group">
+      <input type="text" placeholder="edit something" class="form-control" [(ngModel)]="name" name="name" > <br>
+      <input type="text" placeholder="model auto" class="form-control" [(ngModel)]="model" name="model"> <br>
+      <input type="number" placeholder="speed" class="form-control" [(ngModel)]="speed" name="speed"> <br>
+      <input type="text" placeholder="color auto" class="form-control" [(ngModel)]="colors.car" name="car"> <br>
+      <input type="text" placeholder="color salon" class="form-control" [(ngModel)]="colors.salon" name="salon"> <br>
+      <input type="text" placeholder="color wheels" class="form-control" [(ngModel)]="colors.wheels" name="wheels"> <br>
+    </div>
+  </form>
+
+  <form (submit)="addOpt(option.value)">
+    <div class="form-group">
+      <label for="option">New Options</label>
+      <input type="text" id="option" placeholder="enter something" class="form-control" #option> <br>
+      <button type="submit" class="btn btn-outline-primary">Save</button>
+    </div>
+  </form>
+
+  <h5>Opportunities Auto</h5>
+  <div class="alert alert-warning">
+    <ul>
+      <li *ngFor="let opt of options; let i = index">{{i + 1}}-{{opt}} <button class="btn btn-outline-warning btn-sm" (click)="deleteOpt(opt)">x</button> </li>
+    </ul>
+  </div>
+
+  <h5>Select Auto</h5>
+  <button class="btn btn-outline-danger"(click)="carName('mercedes')">MERCEDES</button>
+  <button class="btn btn-outline-info" (click)="carName('audi')">AUDI</button>
+  <button class="btn btn-outline-success" (click)="carName('bmw')">BMW</button>
+  <button class="btn btn-outline-dark" (click)="carName('porsche')">Porsche</button>
+</div>
